@@ -46,10 +46,12 @@ export default {
   methods: {
     select(date) {
       this.date = date;
+      this.bool = false;
     },
 
     open_datepicker() {
       this.bool = true;
+      console.log(document.querySelector('.d-agenda'))
     },
     boolean_start() {
       this.bool = false;

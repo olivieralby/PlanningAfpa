@@ -15,6 +15,7 @@ use App\Form\PlannigType;
 use App\Form\PlanningType;
 use App\Form\FormationType;
 use App\Form\CommentaireType;
+use App\Form\EditStudyType;
 use App\Repository\StudyRepository;
 use App\Repository\PlanningRepository;
 use App\Repository\FormationRepository;
@@ -29,6 +30,7 @@ class HomeController extends AbstractController
 {
     private $formationrepository;
     private $studyrepository;
+    public $i;
 
     public function __construct(FormationRepository $formationrepository, StudyRepository $studyrepository)
     {
@@ -88,6 +90,7 @@ class HomeController extends AbstractController
         $name_formation = $this->formationrepository->findAll();
         $list_study  = $this->studyrepository->findStudy($search);
         $items = $repo->findPlanning($search);
+        
         //retourne une vue
         return $this->render('home/index.html.twig', [
             'items' => $items,
@@ -115,7 +118,12 @@ class HomeController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('home');
         }
-
+     // requête ajax  pour l'edition des plannings
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' =>  $this->renderView('home/edit.html.twig',['form' => $form->createView(),'planning' => $planning])
+            ]);
+        }
 
         return $this->render('home/edit.html.twig', [
             'form' => $form->createView(),
@@ -124,12 +132,55 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/delete/{id}", name="delete", methods="DELETE")
+     * @Route("/delete/{id}", name="delete", methods={"DELETE"})
      */
-    public function delete(EntityManagerInterface $em, Planning $planning)
+    public function delete(EntityManagerInterface $em, Planning $planning,Request $request,PlanningRepository $repository)
     {
+        $items = $repository->findAll();
+        /*if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' =>  $this->renderView('home/delete.html.twig',['id' => $id])
+            ]);
+        }*/
         $em->remove($planning);
         $em->flush();
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/task/{id}",name="task")
+     */
+    public function task(PlanningRepository $repository,$id,Request $request)
+    {
+        $items = $repository->findAll();
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content' =>  $this->renderView('home/delete.html.twig',['id' => $id])
+            ]);
+        }
+        return $this->render('home/delete.html.twig',compact('id'));
+    }
+
+    /**
+     * @Route("/home/study/{id}", name="study")
+     */
+    public function editStudy(Study $study,Request $request,EntityManagerInterface $em)
+    {
+        $form = $this->createForm(EditStudyType::class,$study);
+        $form->handleRequest($request);
+        if($request->isXmlHttpRequest()){
+            return new JsonResponse([
+                'content'=>$this->renderView('home/edit_study.html.twig',['form' => $form->createView()])
+            ]);
+        }
+        if($form->isSubmitted() && $form->isValid()){
+            $em->persist($study);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('home/edit_study.html.twig',[
+            'form'=>$form->createView(),
+
+        ]);
     }
 }

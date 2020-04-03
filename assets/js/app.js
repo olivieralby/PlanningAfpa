@@ -14,8 +14,27 @@ import Vue from 'vue'
 import Datepicker from './Datepicker'
 import Planning from './Planning'
 import Autogrow from './Autogrow';
+import Show from './Show';
+import Edit from './Edit';
+import Delete from './Delete';
+import EditStudy from './EditStudy';
+
+//permet d'éditer un planning
+
+new Edit(document.querySelector('.dashboard'))
+
+//permet d'effacer un element
+
+new Delete(document.querySelector('.delete'))
+
+//permet d'afficher un element pop-up pour éditer les élèves
+
+new EditStudy(document.querySelector('.planning_study'))
+
+//Permet de modifier le textarea des commentaires
 
 new Autogrow()
+
 new Vue({
     components: {
         Datepicker
@@ -26,7 +45,6 @@ new Vue({
         Planning
     }
 }).$mount('#planning')
-
 
 
 

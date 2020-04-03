@@ -1,22 +1,22 @@
-{% extends "base.html.twig" %}
 
-{% block body %}
 
-<div id="planning">
-    <a href="{{path('show')}} " class="show_a">click</a>
-    
-    {% for m in month %}
-    <div class="month">{{m}}</div>
-    {% endfor %}
-    <div class="planning_header">
-        {% for i in 1..52 %}
-        <div class="weeks">{{i}}s</div>
-        {% endfor %}
-    </div>
-    <div class="content_planning">
-        {% for i,item in items %}
-        <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}" modif="{{i}} "></planning>
-        {% endfor %}
-    </div>
-</div>
-{% endblock %}
+
+
+            <div class="js-planning">
+                {% for m in month %}
+                <div class="month">{{m}}
+
+                </div>
+                {% endfor %}
+                
+                <div class="content_planning">
+                    {% for i,item in items %}
+                    <planning activity=" {{item.activity}} " value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}"
+                    modif="{{i}} "></planning>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+
+       

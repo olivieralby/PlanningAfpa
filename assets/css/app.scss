@@ -3,7 +3,7 @@ $color1: rgb(62, 109, 161);
 $colorText: rgb(1, 20, 43);
 $colorBck: rgb(212, 230, 250);
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -11,20 +11,22 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+
     ::-webkit-scrollbar {
         //traitement sur la scrollbar
         width: 5px;
     }
-    
+
     ::-webkit-scrollbar-track {
         background-color: #fff;
         padding: 1px;
     }
-    
+
     ::-webkit-scrollbar-thumb {
         background-color: grey;
         border-radius: 4px;
     }
+
     header {
         height: 160px;
         width: 100%;
@@ -66,32 +68,39 @@ body {
             background-color: rgb(53, 49, 44);
             padding: 32px 32px;
             color: rgb(180, 178, 178);
-            
+
             #app {
                 position: relative;
+
                 h2 {
                     text-align: center;
                     color: rgb(185, 182, 182);
                     font-size: 24px;
                     position: absolute;
-                    top:50px;
-                    left:40%;
+                    top: 50px;
+                    left: 40%;
                 }
-                .formation_formulaire {//css sur le formulaire formation
+
+                .formation_formulaire {
+                    //css sur le formulaire formation
                     border-bottom: 1px solid rgba(0, 0, 0, 0.418);
                     padding-bottom: 10px;
-                    h4{
-                        cursor:pointer;
-                        .material-icons{
+
+                    h4 {
+                        cursor: pointer;
+
+                        .material-icons {
                             font-size: 30px;
                             vertical-align: middle;
                             margin-left: 66px;
 
                         }
                     }
-                    span.comment{
-                        cursor:pointer;
+
+                    span.comment {
+                        cursor: pointer;
                     }
+
                     label {
                         display: block;
                     }
@@ -108,17 +117,21 @@ body {
                     }
                 }
 
-                .planning_formulaire {//css sur le planning
+                .planning_formulaire {
+                    //css sur le planning
                     padding-bottom: 10px;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.418);
-                    h4{
-                        cursor:pointer;
-                        .material-icons{
+
+                    h4 {
+                        cursor: pointer;
+
+                        .material-icons {
                             font-size: 30px;
                             vertical-align: middle;
 
                         }
                     }
+
                     form.form-planning {
                         display: grid;
                         grid-template-columns: 200px 200px 200px 200px;
@@ -132,251 +145,439 @@ body {
                             margin-top: 20px;
                             height: 40px;
                             background-color: $color;
-                            border:none;
-                            outline:none;
+                            border: none;
+                            outline: none;
                             border-radius: 4px;
-                            color:#ffffff;
+                            color: #ffffff;
                             width: 65px;
                         }
                     }
                 }
 
-                .commentaire{//css sur le formulaire sur les commentaires
+                .commentaire {
+                    //css sur le formulaire sur les commentaires
                     border-bottom: 1px solid #000;
                     padding-bottom: 10px;
-                    h4{
-                        cursor:pointer;
-                        .material-icons{
+
+                    h4 {
+                        cursor: pointer;
+
+                        .material-icons {
                             font-size: 30px;
                             vertical-align: middle;
                             margin-left: 26px;
 
                         }
                     }
-                    span.comment{
-                        cursor:pointer;
+
+                    span.comment {
+                        cursor: pointer;
                     }
 
-                    .date_comment{
-                        
-                        form{
-                            display:grid;
-                            grid-template-columns:500px 70px 150px 160px ;
+                    .date_comment {
+
+                        form {
+                            display: grid;
+                            grid-template-columns: 500px 70px 150px 160px;
                             grid-gap: 50px;
-                            textarea{
+
+                            textarea {
                                 width: 500px;
                             }
 
-                            button{
+                            button {
                                 height: 40px;
                                 background-color: $color;
-                                border:none;
-                                outline:none;
+                                border: none;
+                                outline: none;
                                 border-radius: 4px;
-                                color:#ffffff;
+                                color: #ffffff;
                                 margin-left: 50px;
                                 width: 50px;
                             }
                         }
                     }
                 }
+
                 //css formulaire élèves
-                .study{
-                    h4{
-                        cursor:pointer;
-                        .material-icons{
+                .study {
+                    h4 {
+                        cursor: pointer;
+
+                        .material-icons {
                             font-size: 30px;
                             vertical-align: middle;
                             margin-left: 87px;
                         }
                     }
-                    form{
-                        display:grid;
+
+                    form {
+                        display: grid;
                         grid-template-columns: 250px 250px 200px 50px;
-                        input{
+
+                        input {
                             height: 30px;
                         }
-                        label{
+
+                        label {
                             display: block;
                         }
-                        button{
+
+                        button {
                             margin-top: 20px;
                             height: 40px;
                             background-color: $color;
-                            border:none;
-                            outline:none;
+                            border: none;
+                            outline: none;
                             border-radius: 4px;
-                            color:#ffffff;
-                            width: 65px;   
+                            color: #ffffff;
+                            width: 65px;
                         }
                     }
-                    
+
                 }
 
             }
         }
 
-        .list_formation{
+        .list_formation {//affiche l'élément pour la liste de sélection des formations
             width: 50%;
             border-bottom: 4px solid #fff;
             margin-top: 30px;
-            form{
+
+            form {
                 height: 80px;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
-                background-color: #35312cde;
-                label{
+                background-color: #36312bde;
+
+                label {
                     margin-left: 10px;
-                    color:white;
+                    color: white;
                 }
-                input{
+
+                input {
                     margin-left: 20px;
                 }
-                button{
+
+                button {
                     margin-left: 20px;
-                    height: 30px;
+                    height: 40px;
+                    padding: 0 10px;
                     background-color: $color;
-                    color:white;
-                    outline:none;
-                    border:none;
+                    color: white;
+                    outline: none;
+                    border: none;
+                    border-radius: 5px;
                 }
-                
+
             }
         }
 
         .dashboard {
             position: relative;
             margin-top: 80px;
-            height:auto;
+            height: auto;
+
             h2 {
                 text-align: center;
                 color: $colorText;
             }
 
+            .delete-content {
+                padding: 20px;
+                width: 300px;
+            }
+            div.spinner{//création du spinner
+                opacity:0;
+                position: absolute;
+                left:calc(50% - 150px);
+                top:calc(50%);
+                height: 150px;
+                width: 150px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(70, 69, 69, 0.829);
+                .spinner_in{
+                    position: relative;
+                    display: inline-block;
+                    height: 50px;
+                    width: 50px;
+                    border:6px solid rgba(0, 0, 0, 0.178);
+                    border-radius:50px;
+                    &::after{
+                        content:'';
+                        height: 50px;
+                        width: 50px;
+                        position: absolute;
+                        top:-6px;
+                        left:-6px;
+                        border-radius:50px;
+                        border:6px solid transparent;
+                        border-top-color:  $color;
+                        animation: spin 1s linear infinite;
+                    }
+                }
+                @keyframes spin {
+                    0%{transform:rotate(0deg)}
+                    100%{transform:rotate(360deg)}
+                }
+            }
             .table_list {
                 th {
                     width: 200px;
                 }
 
-                td {
-                    width: 200px;
+                tr {
+                    td {
+                        width: 200px;
+                        span.js-content-dashboard{
+                            display:block;
+                            width: 200px;
+                        }
 
-                    a {
-                        color: black;
+                        a {
+                            color: black;
+                        }
+
                     }
                 }
             }
-        }
-        //css liste des formation
-        .list_formation{
-            form{
-                label{
-                    margin-left: 10px;
-                    float: left;
+
+            .pop-up-delete {
+                position: absolute;
+                left: 700px;
+                background-color: #fff;
+                z-index: 100;
+                width: 320px;
+                padding: 30px;
+                border: 2px solid rgba(128, 128, 128, 0.445);
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                p {
+                    text-align: center;
+                    font-weight: bold;
                 }
-                input{
-                    margin-left: 20px;
-                    float: left;
-                }
-                button{
-                    float: left;
-                    margin-left: 20px;
-                   
-                }
-                
             }
         }
+
         //css sur la page edit.html.twig
         .formulaire {
-            width: 40%;
             background-color: #42463d;
             color: white;
-            height: 600px;
-            position: absolute;
-            right: 100px;
-            box-shadow: 0px 0px 5px black;
-            z-index: 100;
-            padding: 10px;
-
+            padding: 24px 0px;
+            position: relative;
+            width: 1100px;
+            animation: opaci .8s;
+            
             .button {
                 background-color: transparent;
-                height: 30px;
-                width: 30px;
-                border-radius: 30px;
+                border:none;
                 display: flex;
                 justify-content: center;
+                outline:none;
+                position: absolute;
+                top:5px;
+                right:5px;
+                span{
+                    color:white;
+                }
             }
 
             form {
-                height: 450px;
-                position: relative;
-
+                display:grid;
+                grid-template-columns: repeat(6,1fr);
                 #planning {
                     margin: 0;
                 }
 
                 label {
-                    display: block;
+                    display: none;
                 }
-
+                input{
+                    margin-left: 10px;
+                }
+                select#planning_formation{
+                    display:none;
+                }
                 .btn {
                     background-color: #87bb34;
                     color: #fff;
-                    outline:none;
-                    border:none;
+                    outline: none;
+                    border: none;
+                    width: 100px;
+                    margin-top: 10px;
+                    margin-left: 10px;
                 }
 
             }
-        }
-        #planning {
-            width: 90%;
-            margin-bottom: 200px;
-            overflow: hidden;
-            padding-top: 80px;
-            box-shadow: 0px 0px 5px black;
-            
-            .container_planning{
-                position: relative;
-                height: auto;
-                                
-                .js-planning {
-                    width: 96%;
-                    margin:auto;
-                    
-                    
-                    .month {
-                        float: left;
-                        width: 8%;
-                text-align: center;
-                background-color: #87bb34;
-                color: white;
-                height: 40px;
-                line-height: 40px;
-                border-right: 1px solid white;
+            @keyframes opaci {
+                0%{opacity:0}
+                100%{opacity:1}
             }
-            
-            .content_planning {
-                width: 96%;
-                min-height: 400px;
-                display: flex;
-                flex-direction: column;
-            }
-        }
-        .planning_study{
-            position: relative;
-            top:-220px;
-            left:50%;
-            p{
-                margin-left: 20px;
-            }
-        }
-    }
-    
-    
-    
-}
-}//fin balise container
+        }//fin de la div formulaire Edit.html.twig
 
+        .ajax {
+            box-shadow: 0px 0px 5px black;
+                div.spinner2{//création du spinner
+                    opacity:0;
+                    position: absolute;
+                    left:calc(50% - 150px);
+                    top:calc(50%);
+                    height: 150px;
+                    width: 150px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgba(70, 69, 69, 0.829);
+                    .spinner_out{
+                        position: relative;
+                        display: inline-block;
+                        height: 50px;
+                        width: 50px;
+                        border:6px solid rgba(0, 0, 0, 0.178);
+                        border-radius:50px;
+                        &::after{
+                            content:'';
+                            height: 50px;
+                            width: 50px;
+                            position: absolute;
+                            top:-6px;
+                            left:-6px;
+                            border-radius:50px;
+                            border:6px solid transparent;
+                            border-top-color:  $color;
+                            animation: spin 1s linear infinite;
+                        }
+                    }
+                    @keyframes spin {
+                        0%{transform:rotate(0deg)}
+                        100%{transform:rotate(360deg)}
+                    }
+            }
+            #planning {
+                width: 90%;
+                margin-bottom: 200px;
+                overflow: hidden;
+                padding-top: 80px;
+
+                .container_planning {
+                    position: relative;
+                    height: auto;
+
+                    .js-planning {
+                        width: 96%;
+                        margin: auto;
+
+                        .month {
+                            float: left;
+                            width: 8%;
+                            text-align: center;
+                            background-color: #87bb34;
+                            color: white;
+                            height: 40px;
+                            line-height: 40px;
+                            border-right: 1px solid white;
+                        }
+
+                        .content_planning {
+                            width: 96%;
+                            min-height: 400px;
+                            display: flex;
+                            flex-direction: column;
+                        }
+                    }
+
+                }
+
+
+
+            }
+            .planning_study {
+                position: relative;
+                top: -240px;
+                left: 40%;
+
+                tr {
+                    td {
+                        border-bottom:1px solid rgba(0, 0, 0, 0.438);
+                        a {
+                            color: inherit
+                        }
+                        span.study_content {
+                            width: 400px;
+                            position: relative;
+                            display: block;
+                            .edit_study{
+                                
+                                width: 500px;
+                                background-color: rgb(53, 49, 44);
+                                padding: 30px;
+                                position: relative;
+                                animation: edit .5s ;
+                                @keyframes edit {
+                                    0%{transform:translateX(200px);}
+                                    100%{transform:translateX(0);}
+                                }
+                                
+                                button.study_close{
+                                    float:right;
+                                    outline:none;
+                                    position: absolute;
+                                    top: 10px;
+                                    right: 10px;
+                                }
+                                form{
+                                    display: grid;
+                                    grid-template-columns: 180px 180px 100px;
+                                    gap: 5px;
+                                    button{
+                                        border:1px solid rgba(143, 141, 141, 0.548);
+                                        width: 40px;
+                                        height: 25px;
+                                        color:white;
+                                        outline:none;
+                                        margin-top: 32px;
+                                    }
+                                    label{
+                                        color:white;
+                                    }
+                                    input{
+                                        width: 180px;
+                                    }
+                                    
+                                }
+                                button{
+                                    border:none;
+                                    background-color: transparent;
+                                    span{
+                                        color:white;
+                                        font-size:14px;
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+
+                    td.td_action {
+                        text-align: right;
+                    }
+                }
+
+                
+            }
+        }
+
+        // fin de la div ajax
+    }
+
+    //fin balise container
 }
+
 //fin de la balise body

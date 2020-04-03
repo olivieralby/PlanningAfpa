@@ -1,5 +1,5 @@
 <template>
-    <div class="agenda">
+    <div class="agenda" >
         <div class="header">
             <div class="header_year">{{year}} </div>
             <div class="header_month">{{getMonth}} </div>

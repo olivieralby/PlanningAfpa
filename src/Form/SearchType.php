@@ -10,22 +10,32 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType{
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    
+    public function buildForm (FormBuilderInterface $builder, array $options) 
     {
-        $builder->add('search_formation',EntityType::class,[
-            'class'=>Formation::class,
-            'label'=>false,
-            'required'=>false,
-            'multiple'=>true,
-            'expanded'=>true
+        $builder
+        
+            ->add('search_formation',EntityType::class, [
+                'label'=>false,
+                'class'=>Formation::class,
+                'required'=>false,
+                'multiple'=>true,
+                'expanded'=>true
+            ]);
+            
+    }
+
+    public function configureOptions (OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'=>Search::class,
+            //'method'=>'GET',
+            'csrf_protection'=>false
         ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function getBlockPrefix()
     {
-        $resolver->setDefaults([
-            'data_class' => Search::class,
-        ]);
+        return "";
     }
 }

@@ -14,7 +14,7 @@
                 <h4>Saisir la formation
                     <span class="material-icons">
                         keyboard_arrow_down
-                        </span>
+                    </span>
                 </h4>
                 {{ form_start(form_,{attr:{class:'form-format'}}) }}
                 {{ form_label(form_.name, 'Saisir une formation')}}
@@ -27,7 +27,7 @@
                 <h4>Planning de la formation
                     <span class="material-icons">
                         keyboard_arrow_down
-                        </span>
+                    </span>
                 </h4>
                 {{ form_start(form,{attr:{class:'form-planning'}}) }}
                 {{ form_rest(form) }}
@@ -39,17 +39,17 @@
                 <h4>Faire un commentaire
                     <span class="material-icons">
                         keyboard_arrow_down
-                        </span>
+                    </span>
                 </h4>
                 <div class="date_comment">
                     {{ form_start(form_comment) }}
                     {{ form_rest(form_comment) }}
                     <div id="calendar">
-                        <datepicker value="20-03-2020" ></datepicker><!-- création d'un custom element avec vue-js -->
+                        <datepicker value="20-03-2020"></datepicker><!-- création d'un custom element avec vue-js -->
                     </div>
-                        <button type="submit">Ok</button>
+                    <button type="submit">Ok</button>
                     {{ form_end(form_comment) }}
-                    
+
                 </div>
             </div>
             <!-- faire un input pour la saisie des éleves par formation -->
@@ -57,7 +57,7 @@
                 <h4>Liste des élèves
                     <span class="material-icons">
                         keyboard_arrow_down
-                        </span>
+                    </span>
                 </h4>
                 <div class="form_study">
                     {{ form_start(form_study)}}
@@ -68,16 +68,16 @@
             </div>
         </div>
     </div>
-    <!-- filtre pour la saisie -->
-    <div class="list_formation">
-        {{ form_start(form_formation) }}
-        {{ form_row(form_formation.search_formation) }}
-        <button type="submit">ok</button>
-        {{ form_end(form_formation) }}
-    </div>
+   
     <!-- dashboard editer un planning -->
     <div class="dashboard">
         <h2>Planning</h2>
+        <!-- <div class="js-content-dashboard"></div>  element à déplacer -->
+        <div class="delete-content"></div>
+        <!-- création du spinner -->
+        <div class="spinner">
+            <span class="spinner_in"></span>
+        </div>
         <table class="table_list table table-striped">
             <tr>
                 <th>Activité</th>
@@ -92,58 +92,76 @@
             <!--Récupération des éléments de la base de donnée-->
 
             <tr>
-                <td>{{item.activity}} </td>
+                <td>{{item.activity}} 
+                    <span class="js-content-dashboard" id="edit-{{item.id}}"></span>
+                </td>
                 <td>{{item.dateDebut | date('d/m/Y')}} </td>
                 <td>{{item.dateFin | date('d/m/Y')}} </td>
                 <td>{{item.professeur}} </td>
                 <td>{{item.duree}} semaine(s)</td>
-
-                <td><a class="edit" href="{{path('edit',{id:item.id})}} " title="editer"><i class="material-icons">
+                
+                <td>
+                    <a class="edit" href="{{ path('edit',{id:item.id}) }} " id="{{item.id}}" title="editer"><i class="material-icons">
                             edit
                         </i></a>
-
-                    <form action="{{ path('delete',{id:item.id})}} " method="post" style="display:inline-block;">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ item.id) }}">
-                        <button style="border:none;"><i class="material-icons">
-                                delete
-                            </i></button>
-                    </form>
+                    <!-- mise en place du btn delete -->
+                    <a style="border:none;" href="{{path('task',{id:item.id})}}" class="a-delete"><i class="material-icons">
+                        delete
+                    </i></a>
+                    <div class="delete">
+                   
+                    </div>
                 </td>
             </tr>
             {% endfor %}
         </table>
 
     </div>
-    <!-- Liste des formations -->
-    
 
-<div id="planning"><!-- Permet d'afficher le planning -->
-    <div class="container_planning">
-        
-        <div class="planning_planning">
 
-            <div class="js-planning">
-                {% for m in month %}
-                <div class="month">{{m}}</div>
-                {% endfor %}
-                
-                <div class="content_planning">
-                    {% for i,item in items %}
-                    <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}"
-                    modif="{{i}} "></planning>
-                    {% endfor %}
-                </div>
-            </div>
+    <!-- Affichage du planning Elément de fin -->
+
+    <div class="ajax filter">
+        <div class="spinner2">
+            <span class="spinner_out"></span>
         </div>
-        <div class="planning_study">
+        <div class="list_formation ">
+            {{ form_start(form_formation,{attr:{class:'js-formulaire'}}) }}
+            {{ form_row(form_formation.search_formation) }}
+            <button type="submit">Afficher</button>
+            {{ form_end(form_formation) }}
+        </div>
+        <!-- Permet d'afficher le planning -->
+        <div id="planning" >
+            <div class="container_planning ">
+
+                {% include "home/show.html.twig" %}
+
+            </div><!-- fin de la balise container planning -->
+        </div><!-- fin de la div planning element vue js-->
+        <div class="planning_study ">
             <h4>Liste des stagiaires</h4>
-            {% for list in list_study %}
-                <p>{{ list.nom }} &nbsp {{list.prenom}} </p>
-            {% endfor %}
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+                {% for list in list_study %}
+                <tr>
+                    <td>{{ list.nom }}</span> &nbsp {{list.prenom}}
+                        <span class="study_content" id="ol-{{list.id}} " ></span>
+                    </td>
+                    <td class="td_action js-study-filter">
+                        
+                        <a href="{{ path('study',{id:list.id})}} " id="{{list.id}} " title="editer"><i class="material-icons" style="font-size:18px;">
+                            edit
+                        </i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
-    </div>
-</div>
+    </div><!-- fin de la div ajax -->
 </div><!-- fin de la div container -->
 
 {% endblock %}
